@@ -1,5 +1,3 @@
-"""Pixel-art sprites and frame definitions."""
-
 PALETTE = {
     "#": "#000000",
     "F": "#c58b36",

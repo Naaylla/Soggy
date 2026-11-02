@@ -1,9 +1,11 @@
 # Soggy
 
-Tiny pixel-art desktop cat. Requires Python 3 and Tkinter.
+Soggy is a sad little desktop cat. He walks around and takes naps.
 
-Run with `python pet.py`.
+![Soggy](assets/Soggy.gif)
 
-Click for a quote; drag to carry or throw; right-click to vanish.
+- Drag him around with your mouse.
+- Left-click him for a quote.
+- Right-click him to make him vanish.
 
-Code is organized in `soggy/` by app, sprites, quotes, and settings.
+Run Soggy with `python pet.py`.

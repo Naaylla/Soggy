@@ -1,5 +1,3 @@
-"""Launch the Soggy desktop pet."""
-
 from soggy.app import SoggyPet
 
 

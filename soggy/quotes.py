@@ -1,5 +1,3 @@
-"""Pixel-font quotes and speech-bubble layout."""
-
 from .config import SCALE, WINDOW_H, WINDOW_W
 from .sprites import FRONT_ROWS, PALETTE
 

@@ -1,5 +1,3 @@
-"""Tkinter application and desktop-pet behavior."""
-
 import random
 import tkinter as tk
 
@@ -82,7 +80,6 @@ class SoggyPet:
 
 
     def _render(self, frame, flip=False, squash=1.0):
-        """Draw the sprite; squash changes its proportions around the feet."""
         self.frame, self.flip = frame, flip
         grid = frame["grid"]
         width = len(grid[0])

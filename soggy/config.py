@@ -1,5 +1,3 @@
-"""Application settings."""
-
 SCALE = 4
 WINDOW_W, WINDOW_H = 200, 120
 TASKBAR_HEIGHT = 48
