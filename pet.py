@@ -1,7 +1,8 @@
 """Soggy - a tiny pixel-art desktop cat.
 
-Soggy lives on your desktop: it sits, wanders left and right, naps and
-sometimes cries. Left-click it for a hype quote, right-click to quit.
+Soggy lives on your desktop: a sad little cat with tears in its eyes. It
+sits, wanders left and right, and naps (still crying a little). Left-click it
+for a hype quote, right-click to quit.
 
 Standard library only (tkinter), no extra installs needed.
 Repo: https://github.com/Naaylla/Soggy
@@ -14,8 +15,9 @@ import tkinter as tk
 # Look & feel
 # ---------------------------------------------------------------------------
 
-SCALE = 4                     # screen pixels per sprite cell (smaller = cuter)
-WINDOW_W, WINDOW_H = 200, 180
+SCALE = 3                     # screen pixels per sprite cell (smaller = cuter)
+WINDOW_W, WINDOW_H = 160, 150
+TASKBAR_HEIGHT = 48           # so Soggy stands right on top of the taskbar
 TRANSPARENT_KEY = "#ff00ff"   # this exact color is made invisible (Windows)
 QUOTE_MS = 3000               # how long a quote stays on screen
 MOVE_MS = 50                  # how often Soggy takes a step
@@ -36,7 +38,7 @@ SPRITE_SIT = [
     "..#FFF####FFF#..",
     "..#FFFFFFFFFF#..",
     "..#FFEFFFFEFF#..",
-    "..#FFFFPPFFFF#..",
+    "..#TFFFPPFFFT#..",
     "..#FFFFFFFFFF#..",
     "...#FFFFFFFF#...",
     "..#FFWWWWWWFF#..",
@@ -55,7 +57,7 @@ SPRITE_WALK_A = [
     "..#FFF####FFF#..",
     "..#FFFFFFFFFF#..",
     "..#FFEFFFFEFF#..",
-    "..#FFFFPPFFFF#..",
+    "..#TFFFPPFFFT#..",
     "..#FFFFFFFFFF#..",
     "...#FFFFFFFF#...",
     "..#FFWWWWWWFF#..",
@@ -74,7 +76,7 @@ SPRITE_WALK_B = [
     "..#FFF####FFF#..",
     "..#FFFFFFFFFF#..",
     "..#FFEFFFFEFF#..",
-    "..#FFFFPPFFFF#..",
+    "..#TFFFPPFFFT#..",
     "..#FFFFFFFFFF#..",
     "...#FFFFFFFF#...",
     "..#FFWWWWWWFF#..",
@@ -93,7 +95,7 @@ SPRITE_SLEEP = [
     "..#FFF####FFF#..",
     "..#FFFFFFFFFF#..",
     "..#FcccFFcccF#..",
-    "..#FFFFPPFFFF#..",
+    "..#TFFFPPFFFT#..",
     "..#FFFFFFFFFF#..",
     "...#FFFFFFFF#...",
     "..#FFWWWWWWFF#..",
@@ -131,7 +133,7 @@ SPRITE_CRY_B = [
     "..#FFF####FFF#..",
     "..#FFFFFFFFFF#..",
     "..#FFEFFFFEFF#..",
-    "..#FFFFPPFFFF#..",
+    "..#TFFFPPFFFT#..",
     "..#TFFFFFFFFT#..",
     "...#FFFFFFFF#...",
     "..#FFWWWWWWFF#..",
@@ -173,7 +175,8 @@ class SoggyPet:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Soggy")
-        self.root.overrideredirect(True)  # no title bar, no borders
+        self.root.overrideredirect(True)        # no title bar, no borders
+        self.root.attributes("-topmost", True)  # visible on top of everything
         self.root.configure(bg=TRANSPARENT_KEY)
 
         try:
@@ -182,9 +185,9 @@ class SoggyPet:
         except tk.TclError:
             pass  # not supported here (e.g. macOS/Linux): window stays solid
 
-        # Soggy stays on the desktop (not on top of every app), near the bottom.
+        # Soggy always floats on top, standing just above the taskbar.
         self.x = self.root.winfo_screenwidth() - WINDOW_W - 40
-        self.y = self.root.winfo_screenheight() - WINDOW_H - 50
+        self.y = self.root.winfo_screenheight() - WINDOW_H - TASKBAR_HEIGHT
         self.root.geometry(f"{WINDOW_W}x{WINDOW_H}+{self.x}+{self.y}")
 
         self.canvas = tk.Canvas(
@@ -240,15 +243,15 @@ class SoggyPet:
             state="hidden",
         )
         self.text = self.canvas.create_text(
-            WINDOW_W // 2, 45,
-            text="", width=WINDOW_W - 40,
-            font=("Segoe UI", 9, "bold"),
+            WINDOW_W // 2, 36,
+            text="", width=WINDOW_W - 30,
+            font=("Segoe UI", 8, "bold"),
             fill=PALETTE["#"], justify="center",
             state="hidden",
         )
         self.zzz = self.canvas.create_text(
-            148, 86,
-            text="z", font=("Segoe UI", 10, "bold"),
+            122, 74,
+            text="z", font=("Segoe UI", 9, "bold"),
             fill="#5a4636", state="hidden",
         )
 
@@ -345,7 +348,7 @@ class SoggyPet:
             text=("z", "z z", "z z z")[self.zzz_step],
             state="normal",
         )
-        self.canvas.coords(self.zzz, 148, 86 - self.zzz_step * 4)
+        self.canvas.coords(self.zzz, 122, 74 - self.zzz_step * 4)
         self._later(700, self._zzz_tick)
 
     # -- interaction -------------------------------------------------------
