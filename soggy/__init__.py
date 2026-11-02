@@ -1,0 +1,1 @@
+"""Soggy desktop pet."""

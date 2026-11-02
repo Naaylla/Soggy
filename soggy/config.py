@@ -1,0 +1,16 @@
+"""Application settings."""
+
+SCALE = 4
+WINDOW_W, WINDOW_H = 200, 120
+TASKBAR_HEIGHT = 48
+TRANSPARENT_KEY = "#ff00ff"
+QUOTE_MS = 3500
+PHYSICS_MS = 16
+STEP_MS = 140
+STEP_PX = SCALE
+TEAR_MS = 90
+GRAVITY = 1.1
+FRICTION = 0.88
+DRAG_THRESHOLD = 5
+
+CYCLE = ["right", "left", "sleep"]
