@@ -1,8 +1,9 @@
 # Soggy
 
-Soggy is a tiny, sad pixel-art cat with tears in its eyes. It lives on top of
-your taskbar, always visible above other windows, and wanders left and right,
-takes naps, and cries. Left-click it and it cheers you on with a hype quote.
+Soggy is a tiny, sad side-profile pixel-art cat with tears right under its
+eyes. It lives on top of your taskbar, always visible above other windows,
+walks left and right (turning to face where it goes), takes naps, and cries.
+Left-click it and it says something sad but weirdly comforting.
 
 Repo: [github.com/Naaylla/Soggy](https://github.com/Naaylla/Soggy)
 
@@ -17,7 +18,7 @@ Python installers). No `pip install` required.
 
 ## How to use it
 
-- **Left-click Soggy** - shows a random hype quote for 3 seconds.
+- **Left-click Soggy** - shows a sad, comforting quote for 3 seconds.
 - **Right-click Soggy** - quits the app.
 - Otherwise just leave it alone: it walks, sleeps and cries on its own.
 - It always stays on top, standing right above your taskbar.
@@ -30,27 +31,29 @@ All the fun stuff lives at the top of `pet.py`.
 
 ```python
 QUOTES = [
-    "You got this!",
-    "Soggy believes in you.",
+    "You don't have to be okay right now.",
+    "Tomorrow can be softer.",
     "Your new quote goes here.",
 ]
 ```
 
 **Change the sprite:** edit the `SPRITE_*` grids (`SPRITE_SIT`, `SPRITE_WALK_A`,
 `SPRITE_WALK_B`, `SPRITE_SLEEP`, `SPRITE_CRY_A`, `SPRITE_CRY_B`). They are just
-text - one letter per pixel, and `.` means transparent. Soggy is a sad cat, so
-the tears (`T`) are already in every frame. Pick a color for each letter in
-`PALETTE`:
+text - one letter per pixel, and `.` means transparent. Soggy is a side-profile
+cat, so the sprite is flipped automatically when he walks left. The tears (`T`)
+sit directly under the eye (`E`), and `M` makes the little V mouth. Pick a color
+for each letter in `PALETTE`:
 
 ```python
 PALETTE = {
     "#": "#2b1d14",  # outline
     "F": "#f2a03d",  # fur
     "W": "#ffe9d6",  # chest
-    "P": "#ff8fa3",  # nose
+    "P": "#ff8fa3",  # little pink nose
     "E": "#241a14",  # eyes
     "c": "#2b1d14",  # closed eyes
     "T": "#7fd4ff",  # tears
+    "M": "#2b1d14",  # V mouth
 }
 ```
 
